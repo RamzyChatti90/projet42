@@ -1,0 +1,37 @@
+<div class="carnival-widget-container">
+  <!-- Le badge flottant CARNIVAL -->
+  <button mat-fab color="primary" class="carnival-widget-badge" (click)="toggleWidget()" aria-label="Open Carnival AI Widget">
+    <mat-icon fontIcon="support_agent"></mat-icon> <!-- Icône de support/IA, à remplacer si une icône CARNIVAL spécifique est disponible -->
+  </button>
+
+  <!-- Fenêtre du widget de chat/ticket -->
+  <div *ngIf="isWidgetOpen" class="carnival-widget-window">
+    <div class="carnival-widget-header">
+      <h3>Carnival AI (Yamzy)</h3>
+      <button mat-icon-button (click)="toggleWidget()" aria-label="Close Carnival AI Widget">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="carnival-widget-body">
+      <!-- Zone d'affichage des messages -->
+      <div class="carnival-widget-messages">
+        <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'ai-message': message.sender === 'ai'}">
+          <p>{{ message.content }}</p>
+        </div>
+        <div #messagesEnd></div> <!-- Ancre pour le défilement automatique -->
+      </div>
+
+      <!-- Zone de saisie du message -->
+      <div class="carnival-widget-input-area">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Discutez avec Carnival AI...</mat-label>
+          <input matInput [(ngModel)]="currentMessage" (keyup.enter)="sendMessage()" placeholder="Décrivez votre besoin ou question ici...">
+          <button mat-icon-button matSuffix (click)="sendMessage()" [disabled]="!currentMessage.trim()" aria-label="Send message">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

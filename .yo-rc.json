@@ -5,6 +5,7 @@
     "baseName": "projet42",
     "buildTool": "maven",
     "clientFramework": "angular",
+    "creationTimestamp": 1774046361589,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "entities": [],

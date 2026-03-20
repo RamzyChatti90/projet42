@@ -1,0 +1,40 @@
+application {
+    config {
+        baseName projet42
+        packageName com.projet42
+        applicationType monolith
+        authenticationType jwt
+        databaseType sql
+        prodDatabaseType postgresql
+        devDatabaseType h2Disk
+        clientFramework angular
+        buildTool maven
+        enableSwaggerCodegen Boolean
+        enableTranslation Boolean
+        languages [en, fr],
+        nativeLanguage en
+        serverPort 8081
+    }
+}
+
+entity Product {
+    name String required
+    price BigDecimal required
+    stock Integer
+}
+
+entity Category {
+    name String required
+}
+
+relationship ManyToOne {
+    Product{category} to Category
+}
+
+paginate Product with pagination
+service Product with serviceImpl
+dto Product with mapstruct
+
+paginate Category with pagination
+service Category with serviceImpl
+dto Category with mapstruct
